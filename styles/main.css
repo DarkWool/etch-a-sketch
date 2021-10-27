@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+#container div {
+    background-color: violet;
+    border: 1px solid black;
+    width: 25px;
+    height: 25px;
+    float: left;
+}
+*/
+
+.f-lineBreak {
+    clear: left;
+}
+
+
+/* Inline-block method */
+/*
+#container {
+    width: 400px;
+    font-size: 0;
+}
+
+#container div {
+    background-color: violet;
+    border: 1px solid black;    
+    width: 25px;
+    height: 25px;
+}
+
+.ib {
+    display: inline-block;
+}
+*/
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    justify-content: center;
+    border: 5px solid grey;
+    width: 700px;
+    height: 700px;
+}
+
+#container div {
+    border: 1px solid black;
+}
+
+#container div:hover {
+    background-color: grey;
+}
