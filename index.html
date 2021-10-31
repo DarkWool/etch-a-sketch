@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-    <meta charset='UTF-8'>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etch a Sketch</title>
-    <script src='static/sketch.js' defer></script>
-    <link rel='stylesheet' href='styles/main.css'>
+	<meta charset='UTF-8'>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Etch a Sketch</title>
+	<script src='static/sketch.js' defer></script>
+	<link rel='stylesheet' href='styles/main.css'>
 </head>
 
 <body>
-    <main>
-        <div id='container'>
-            
-        </div>
-        <input type='color' id='picker' value='#ff0000'>
-        <button type='button' id='reset'>Reset</button>
-        <input type='range' id='grid-size' min='12' max='72' value='16' step='4'>
-    </main>
+	<main>
+		<h1>Etch a Sketch</h1>
+
+		<div id='grid-container'>
+			<div id='sketch'>
+				
+			</div>
+			<div id='grid-controls'>
+				<input type='color' id='picker' value='#F84B00'>
+				<button type='button' id='solid' class='active'>Solid Color</button>
+				<button type='button' id='rgb'>Random Colors</button>
+				<button type='button' id='eraser'>Eraser</button>
+				<button type='button' id='reset'>Reset</button>
+
+				<label for='grid-size'>Grid Size:</label>
+				<input type='range' id='grid-size' min='16' max='64' value='40' step='4'>
+
+				<div class='self-center'>
+					<label for='show'>Show grid </label>
+					<input type='checkbox' name='show' id='show' autocomplete="off">
+				</div>
+			</div>
+		</div>
+
+	</main>
 </body>
 </html>
