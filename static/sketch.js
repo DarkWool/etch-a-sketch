@@ -27,6 +27,36 @@ function hideGrid() {
 }
 
 // Change the Grid/Sketch size.
+let rgbMode = false;
+let solidMode = true;
+let colorPicker = document.getElementById('picker');
+
+// Set a button to 'active' and determine which mode of color is currently selected.
+let mainButtons = document.getElementById('grid-controls').getElementsByTagName('button');
+let activeButton = mainButtons[0];
+for (let button of mainButtons) {
+	if (button.id !== 'reset') {
+		button.addEventListener('click', (e) => {
+			if (activeButton !== e.target) {
+				activeButton.classList.remove('active');
+				activeButton = e.target;
+				e.target.classList.add('active');
+			}
+
+			if (e.target.id === 'rgb') {
+				rgbMode = true;
+				solidMode = false;
+			} else if (e.target.id === 'solid') {
+				rgbMode = false;
+				solidMode = true;
+			} else {
+				rgbMode = false;
+				solidMode = false;
+			}
+		});
+	}
+}
+
 let gridSize = document.getElementById('grid-size');
 gridSize.addEventListener('change', createGrid);
 
@@ -42,7 +72,13 @@ function createGrid(e) {
 			let newDiv = document.createElement('div');
 			newDiv.classList.add('showGrid');
 			newDiv.addEventListener('mouseover', (e) => {
-				
+				if (rgbMode) {
+					e.target.style.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, 0)}`;
+				} else if (solidMode) {
+					e.target.style.backgroundColor = colorPicker.value;
+				} else {
+					e.target.removeAttribute('style', '');
+				}
 			});
 			sketch.append(newDiv);
 		}
@@ -50,7 +86,13 @@ function createGrid(e) {
 		for (let i = 0; i < totalDivs; i++) {
 			let newDiv = document.createElement('div');
 			newDiv.addEventListener('mouseover', (e) => {
-
+				if (rgbMode) {
+					e.target.style.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, 0)}`;
+				} else if (solidMode) {
+					e.target.style.backgroundColor = colorPicker.value;
+				} else {
+					e.target.removeAttribute('style', '');
+				}
 			});
 			sketch.append(newDiv);
 		}
