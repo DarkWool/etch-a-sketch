@@ -1,39 +1,24 @@
+// Main elements
 let sketch = document.getElementById('sketch');
 let children = sketch.children;
 
-// Reset the grid to blank squares.
-let resetButton = document.getElementById('reset');
-resetButton.addEventListener('click', resetGrid);
-
-function resetGrid() {
-	for (let child of children) {
-		child.removeAttribute('style', '');
-	}
-}
-
-// Clean the whole grid (delete all divs)
-function cleanGrid() {
-	sketch.innerHTML = '';
-}
-
-// Show / Hide Grid
-let showGrid = document.getElementById('show');
-showGrid.addEventListener('change', hideGrid);
-
-function hideGrid() {
-	for (let child of children) {
-		child.classList.toggle('showGrid');
-	}
-}
-
-// Change the Grid/Sketch size.
-let rgbMode = false;
-let solidMode = true;
-let colorPicker = document.getElementById('picker');
-
-// Set a button to 'active' and determine which mode of color is currently selected.
 let mainButtons = document.getElementById('grid-controls').getElementsByTagName('button');
 let activeButton = mainButtons[0];
+
+let colorPicker = document.getElementById('picker');
+let resetBtn = document.getElementById('reset');
+let showGrid = document.getElementById('show');
+let gridSize = document.getElementById('grid-size');
+
+// Color modes
+let solidMode = true;
+let rgbMode = false;
+
+// Event Listeners
+resetBtn.addEventListener('click', resetGrid);
+showGrid.addEventListener('change', showHideGrid);
+gridSize.addEventListener('change', createGrid);
+
 for (let button of mainButtons) {
 	if (button.id !== 'reset') {
 		button.addEventListener('click', (e) => {
@@ -57,10 +42,8 @@ for (let button of mainButtons) {
 	}
 }
 
-let gridSize = document.getElementById('grid-size');
-gridSize.addEventListener('change', createGrid);
-
-function createGrid(e) {
+// Functions
+function createGrid() {
 	cleanGrid();
 
 	sketch.style.cssText = `grid-template-columns: repeat(${gridSize.value}, 1fr); grid-template-rows: repeat(${gridSize.value}, 1fr);`;
@@ -71,20 +54,19 @@ function createGrid(e) {
 		for (let i = 0; i < totalDivs; i++) {
 			let newDiv = document.createElement('div');
 			newDiv.classList.add('showGrid');
-			newDiv.addEventListener('mouseover', switchColors);
+			newDiv.addEventListener('mouseover', switchColorModes);
 			sketch.append(newDiv);
 		}
 	} else {
 		for (let i = 0; i < totalDivs; i++) {
 			let newDiv = document.createElement('div');
-			newDiv.addEventListener('mouseover', switchColors);
+			newDiv.addEventListener('mouseover', switchColorModes);
 			sketch.append(newDiv);
 		}
 	}
 }
 
-
-function switchColors() {
+function switchColorModes(e) {
 	if (rgbMode) {
 		e.target.style.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, 0)}`;
 	} else if (solidMode) {
@@ -92,6 +74,22 @@ function switchColors() {
 	} else {
 		e.target.removeAttribute('style', '');
 	}
+}
+
+function resetGrid() {
+	for (let child of children) {
+		child.removeAttribute('style', '');
+	}
+}
+
+function showHideGrid() {
+	for (let child of children) {
+		child.classList.toggle('showGrid');
+	}
+}
+
+function cleanGrid() {
+	sketch.innerHTML = '';
 }
 
 createGrid();
