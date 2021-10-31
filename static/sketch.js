@@ -71,31 +71,26 @@ function createGrid(e) {
 		for (let i = 0; i < totalDivs; i++) {
 			let newDiv = document.createElement('div');
 			newDiv.classList.add('showGrid');
-			newDiv.addEventListener('mouseover', (e) => {
-				if (rgbMode) {
-					e.target.style.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, 0)}`;
-				} else if (solidMode) {
-					e.target.style.backgroundColor = colorPicker.value;
-				} else {
-					e.target.removeAttribute('style', '');
-				}
-			});
+			newDiv.addEventListener('mouseover', switchColors);
 			sketch.append(newDiv);
 		}
 	} else {
 		for (let i = 0; i < totalDivs; i++) {
 			let newDiv = document.createElement('div');
-			newDiv.addEventListener('mouseover', (e) => {
-				if (rgbMode) {
-					e.target.style.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, 0)}`;
-				} else if (solidMode) {
-					e.target.style.backgroundColor = colorPicker.value;
-				} else {
-					e.target.removeAttribute('style', '');
-				}
-			});
+			newDiv.addEventListener('mouseover', switchColors);
 			sketch.append(newDiv);
 		}
+	}
+}
+
+
+function switchColors() {
+	if (rgbMode) {
+		e.target.style.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, 0)}`;
+	} else if (solidMode) {
+		e.target.style.backgroundColor = colorPicker.value;
+	} else {
+		e.target.removeAttribute('style', '');
 	}
 }
 
