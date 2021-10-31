@@ -11,8 +11,19 @@ function resetGrid() {
 	}
 }
 
+// Clean the whole grid (delete all divs)
 function cleanGrid() {
 	sketch.innerHTML = '';
+}
+
+// Show / Hide Grid
+let showGrid = document.getElementById('show');
+showGrid.addEventListener('change', hideGrid);
+
+function hideGrid() {
+	for (let child of children) {
+		child.classList.toggle('showGrid');
+	}
 }
 
 // Change the Grid/Sketch size.
