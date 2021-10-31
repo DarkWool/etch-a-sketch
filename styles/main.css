@@ -80,6 +80,12 @@ button:hover,
 	color: #ab70ff;
 }
 
+label {
+	font-size: 1.25rem;
+	font-weight: 700;
+	margin-top: 1.25rem;
+}
+
 input[type='range'] {
 	margin: .3rem 0 1.3rem 0;
 }
@@ -90,21 +96,7 @@ input[type='color'] {
 	border: 0;
 	align-self: center;
 	margin: 1rem 0;
-}
-
-input[type='color'] {
 	cursor: pointer;
-}
-
-.self-center {
-	align-self: center;
-}
-
-label {
-	font-size: 1.25rem;
-	font-weight: 700;
-	margin-top: 1.25rem;
-
 }
 
 input[type='checkbox'] {
@@ -112,8 +104,9 @@ input[type='checkbox'] {
 	height: 16px;
 }
 
-
-
+.self-center {
+	align-self: center;
+}
 
 @media only screen and (max-width: 1024px) {
 	h1 {
