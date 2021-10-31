@@ -37,13 +37,23 @@ function createGrid(e) {
 
 	let totalDivs = gridSize.value * gridSize.value;
 
-	for (let i = 0; i < totalDivs; i++) {
-		let newDiv = document.createElement('div');
-		newDiv.classList.add('showGrid');
-		newDiv.addEventListener('mouseover', (e) => {
-			console.log(e);
-		});
-		sketch.append(newDiv);
+	if (showGrid.checked) {
+		for (let i = 0; i < totalDivs; i++) {
+			let newDiv = document.createElement('div');
+			newDiv.classList.add('showGrid');
+			newDiv.addEventListener('mouseover', (e) => {
+				
+			});
+			sketch.append(newDiv);
+		}
+	} else {
+		for (let i = 0; i < totalDivs; i++) {
+			let newDiv = document.createElement('div');
+			newDiv.addEventListener('mouseover', (e) => {
+
+			});
+			sketch.append(newDiv);
+		}
 	}
 }
 
